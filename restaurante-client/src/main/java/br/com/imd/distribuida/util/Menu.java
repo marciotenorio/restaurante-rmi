@@ -37,7 +37,7 @@ public class Menu {
                 case 3 -> remove();
                 case 4 -> findByCustomer();
                 case 5 -> findAll();
-                case 6 -> System.out.println("Encerrando o cliente...");
+                default -> System.out.println("Encerrando o cliente...");
             }
         }
 
@@ -68,8 +68,6 @@ public class Menu {
             else{
                 System.out.println("Não existe mesa disponível.");
             }
-
-            menu();
     }
 
     private void update(){
@@ -92,8 +90,6 @@ public class Menu {
             else{
                 System.out.println("Não existe mesa disponível.");
             }
-
-            menu();
         }
         catch (IOException e){
             e.printStackTrace();
@@ -135,8 +131,6 @@ public class Menu {
                 System.out.println("Número de lugares da mesa: " + table.getNumberOfSeats());
             }
 
-             menu();
-
         } catch (RemoteException e) {
             throw new RuntimeException(e);
         }
@@ -152,8 +146,6 @@ public class Menu {
                 System.out.println("Nome da reserva: " + table.getReservedBy()
                         + ". Número de lugares: " + table.getNumberOfSeats());
             }
-
-            menu();
 
         } catch (RemoteException e) {
             throw new RuntimeException(e);
