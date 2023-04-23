@@ -52,6 +52,7 @@ public class Restaurant extends UnicastRemoteObject implements RestaurantCRUD{
      * @throws RestaurantException
      */
     public Table findByCustomer(String customer) throws RestaurantException {
+        Logger.getLogger("Restaurant").info("Find by customer.");
         return tables.stream().filter(table -> table.getReservedBy().equals(customer))
                 .findFirst()
                 .orElseThrow(() -> new RestaurantException("Customer not found."));
@@ -64,6 +65,7 @@ public class Restaurant extends UnicastRemoteObject implements RestaurantCRUD{
      * @return if is reserved
      */
     public boolean reserve(String customer, int numberOfSeats){
+        Logger.getLogger("Restaurant").info("Doing a reserve");
         for(Table table: tables){
             if(table.isNotReserved() && table.getNumberOfSeats() == numberOfSeats){
                 table.setReserved(true);
@@ -81,6 +83,7 @@ public class Restaurant extends UnicastRemoteObject implements RestaurantCRUD{
      * @return if was updated
      */
     public boolean updateReserve(String customer, int numberOfSeats){
+        Logger.getLogger("Restaurant").info("Update a reserve.");
         Optional<Table> customerTableOptional = tables.stream()
                 .filter(table -> table.getReservedBy().equals(customer))
                 .findFirst();
@@ -114,6 +117,7 @@ public class Restaurant extends UnicastRemoteObject implements RestaurantCRUD{
      * @return if remove are successful
      */
     public boolean removeReserve(String customer){
+        Logger.getLogger("Restaurant").info("Removing a reserve.");
         Optional<Table> customerTable = tables.stream()
                 .filter(table -> table.getReservedBy().equals(customer))
                 .findFirst();
